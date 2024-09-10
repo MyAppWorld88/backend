@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
+    libraryId:{
+        type:String,
+        required:[true],
+    },
     username:{
         type:String,
         required:[true,"Please add the user name"],
@@ -24,4 +28,4 @@ const userSchema = mongoose.Schema({
 }
 );
 
-exports.module= mongoose.model("User",userSchema);
+module.exports= mongoose.model("User",userSchema);

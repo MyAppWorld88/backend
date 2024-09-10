@@ -1,6 +1,12 @@
 const asyncHander = require("express-async-handler");
 const Book = require('../models/bookModel');
 
+//@desc add a book
+//@route Get /api/v1/books/add
+//@access public
+const getBook =asyncHander(async(req,res)=>{
+    res.status(200).send("ok tested")
+})
 
 //@desc add a book
 //@route Post /api/v1/books/add
@@ -36,5 +42,5 @@ const addBook = asyncHander(async(req,res)=>{
 })
 
 module.exports = {
-    addBook,
+    addBook,getBook
   };
