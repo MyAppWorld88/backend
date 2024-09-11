@@ -1,10 +1,11 @@
 const express = require("express");
 const { addBook,getBook } = require("../controllers/bookController");
+const validateToken = require("../middleware/validateTokenHandler");
 
 const router = express.Router();
 
-router.get("/getBook",getBook);
-router.post("/add",addBook);
+router.get("/getBook",validateToken,getBook);
+router.post("/add",validateToken,addBook);
 router.post("/update",);
 router.post("/delete",);
 

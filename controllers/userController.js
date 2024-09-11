@@ -70,7 +70,7 @@ const loginUser = asyncHander(async(req,res)=>{
             }
         },
         process.env.ACCESS_TOKEN_SECERT,
-        {expiresIn:"1m"}
+        {expiresIn:"5m"}
        );
        const library = await Registeredlibrary.findById(user.libraryId);
        res.status(200).json({
