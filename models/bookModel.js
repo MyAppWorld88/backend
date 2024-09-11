@@ -46,7 +46,12 @@ const bookSchema = mongoose.Schema({
         returned_date:{
             type:String,
         }
-    }]
+    }],
+    libraryId:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:"Registeredlibrary"
+    },
 },
 {
   timestamps:true,

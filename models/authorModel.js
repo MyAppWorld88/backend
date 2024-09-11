@@ -18,6 +18,11 @@ const authorSchema = mongoose.Schema({
         type:String,
         required:[false,"Please death_year"],
     },
+    libraryId:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:"Registeredlibrary"
+    },
 
 },
 {

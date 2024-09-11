@@ -61,18 +61,20 @@ const loginUser = asyncHander(async(req,res)=>{
         throw new Error("All fields are mandatory!");
     }
     const user = await User.findOne({email});
+    const library = await Registeredlibrary.findById(user.libraryId);
     if(user && (await bcrypt.compare(password,user.password))){
         const accessToken = jwt.sign({
             user:{
                 username:user.username,
                 email:user.email,
                 id:user.id,
+                libraryId:library.id
             }
         },
         process.env.ACCESS_TOKEN_SECERT,
         {expiresIn:"5m"}
        );
-       const library = await Registeredlibrary.findById(user.libraryId);
+  
        res.status(200).json({
         accessToken,
         userInfo:{
