@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
     libraryId:{
-        type:String,
-        required:[true],
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:"Registeredlibrary"
     },
     username:{
         type:String,
@@ -13,6 +14,10 @@ const userSchema = mongoose.Schema({
         type:String,
         required:[true,"Please add the user email address"],
         unique:[true,"Email address already taken"],
+    },
+    mobileNo:{
+        type:String,
+        required:[true,"Please mobilne number is required"],
     },
     password:{
         type:String,

@@ -1,26 +1,18 @@
 const mongoose = require('mongoose');
 
 
-const librarySchema = mongoose.Schema({
+const RegisterlibrarySchema = mongoose.Schema({
     libraryName:{
         type:String,
-        required:[true,"Please name is required"],
+        required:[true,"Please LibraryName is required"],
     },
     libraryCode:{
         type:String,
-        required:[true,"Please bio is required"],
-    },
-    email:{
-        type:String,
-        required:[true,"Please birth_year is required"],
-    },
-    mobileNo:{
-        type:String,
-        required:[false,"Please death_year"],
+        required:[true,"Please libraryCode is required"],
     },
     address:{
         type:String,
-        required:[false,"Please death_year"],
+        required:[true,"Please address is required"],
     },
 
 },
@@ -30,4 +22,4 @@ const librarySchema = mongoose.Schema({
 );
 
 
-exports.module= mongoose.model("Author",authorSchema);
+module.exports= mongoose.model("Registeredlibrary",RegisterlibrarySchema);
