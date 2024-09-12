@@ -31,7 +31,6 @@ const addBook = asyncHander(async(req,res)=>{
             copies_available,
             total_copies,
             borrowed});
-        console.log(newBook)
         res.status(201).send(newBook)
     }catch(err){
       console.log(err)

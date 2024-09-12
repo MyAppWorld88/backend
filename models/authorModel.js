@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+    const mongoose = require('mongoose');
 
 
 const authorSchema = mongoose.Schema({
@@ -16,11 +16,11 @@ const authorSchema = mongoose.Schema({
     },
     death_year:{
         type:String,
-        required:[false,"Please death_year"],
+        required:[false,"Please death_year if applicable"],
     },
     libraryId:{
         type:mongoose.Schema.Types.ObjectId,
-        required:true,
+        required:false,
         ref:"Registeredlibrary"
     },
 
