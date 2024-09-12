@@ -5,10 +5,10 @@ const bookSchema = mongoose.Schema({
         type:String,
         required:[true,"Please add title of the book"],
     },
-    author_ids:{
-        type:String,
-        required:[true,"Please enter author name"],
-    },
+    // author_ids:{
+    //     type:String,
+    //     required:[true,"Please enter author name"],
+    // },
     category_ids:{
         type:String,
         required:[true,"Please enter category name"],
@@ -52,6 +52,17 @@ const bookSchema = mongoose.Schema({
         required:true,
         ref:"Registeredlibrary"
     },
+    authors:[{
+        authorName:{
+            type:String,
+            required:[true,"Please name is required"],
+        },
+        bio:{
+            type:String,
+            required:[false,"Please bio is required"],
+        },
+    }]
+
 },
 {
   timestamps:true,

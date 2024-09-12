@@ -12,10 +12,8 @@ const getBook =asyncHander(async(req,res)=>{
 //@route Post /api/v1/books/add
 //@access public
 const addBook = asyncHander(async(req,res)=>{
-    console.log(Book)
-    const {title,author_ids,category_ids,isbn,publisher_year,publisher_name,copies_available,total_copies,borrowed}=req.body;
-    if(!title || !author_ids || !category_ids || !isbn || !publisher_year || !publisher_name || !copies_available || !total_copies || !borrowed){
-        // console.log(req.body)
+    const {title,category_ids,isbn,publisher_year,publisher_name,copies_available,total_copies,borrowed}=req.body;
+    if(!title || !category_ids || !isbn || !publisher_year || !publisher_name || !copies_available || !total_copies || !borrowed ||!authorName){
         res.status(400);
         throw new Error("All fields are mandatory");
     }
@@ -23,14 +21,16 @@ const addBook = asyncHander(async(req,res)=>{
         console.log(req.body)
         const newBook = await Book.create({
             title,
-            author_ids,
             category_ids,
             isbn,
             publisher_year,
             publisher_name,
             copies_available,
             total_copies,
-            borrowed});
+            borrowed,
+            authors:[{'authorName':authorName}],
+            libraryId:req.userinfo.libraryId,
+        });
         res.status(201).send(newBook)
     }catch(err){
       console.log(err)
