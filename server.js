@@ -14,6 +14,14 @@ app.use('/api/v1/books',require('./routes/bookRoutes'));
 app.use('/api/v1/authors',require('./routes/authorRoutes'));
 app.use('/api/v1/categories',require('./routes/categoriesRoutes'));
 
+app.all('*',(req,res,next)=>{
+    const err= new Error(`Can't find ${req.originalUrl} on this server!`);
+    err.status ='fail';
+    err.statusCode=404;
+    next(err)
+})
+app.use(errorHandler);
+
 app.listen(port,()=>{
     console.log(`server running on port ${port}`);
 })
