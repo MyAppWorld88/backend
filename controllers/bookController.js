@@ -5,8 +5,8 @@ const Book = require('../models/bookModel');
 //@route Get /api/v1/books/getBook
 //@access public
 const getBook =asyncHander(async(req,res)=>{
-    console.log("userinfo",req.userinfo.roleId)
-    console.log("lib",req.userinfo.libraryId)
+    // console.log("userinfo",req.userinfo.roleId)
+    // console.log("lib",req.userinfo.libraryId)
     let AllBooks;
     if(req.userinfo.roleId=='2'){//admin
         AllBooks =await Book.find({libraryId:req.userinfo.libraryId});
@@ -46,9 +46,43 @@ const addBook = asyncHander(async(req,res)=>{
 })
 
 //@desc update a book
-//@route Post /api/v1/books/update/id
+//@route Post /api/v1/books/update
 //@access public
+const updateContact =asyncHander( async  (req,res)=>{
+const book = await  Book.findById(req.body.id);
+if(!book){
+    res.status(404);
+    throw new Error("Contact not found");
+}
+// if(contact.user_id.toString() !==req.user.id){
+//     res.status(403);
+//     throw new Error("User dont have permission to update other user contacts");
+// }
+const updatedBook = await Contact.findByIdAndUpdate(req.body.id,req.body,{new:true});
+res.status(200).json(updatedBook);
+});
+
+//@desc delete a book
+//@route Get /api/v1/books/delete
+//@access public
+const deleteBook =asyncHander(async(req,res)=>{
+    // console.log("userinfo",req.userinfo.roleId)
+    // console.log("lib",req.userinfo.libraryId)
+    book =await Book.findById(req.body.id);
+    // console.log(book);
+    if(!book){
+        res.status(404);
+        throw new Error("Contact not found");
+    }
+   checkStatus= await Book.deleteOne({_id:req.body.id});
+   if(checkStatus.deletedCount==1){
+    res.status(200).send({'Message':'Deleted Successfully'});
+   }else{
+    throw new Error("Something is wrong!");
+   }
+   
+})
 
 module.exports = {
-    addBook,getBook
+    addBook,getBook,updateContact,deleteBook
   };
