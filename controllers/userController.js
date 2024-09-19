@@ -68,6 +68,7 @@ const loginUser = asyncHander(async(req,res)=>{
                 username:user.username,
                 email:user.email,
                 id:user.id,
+                roleId:user.roleId,
                 libraryId:library.id
             }
         },

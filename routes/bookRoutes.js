@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/getBook",validateToken,getBook);
 router.post("/add",validateToken,addBook);
-router.post("/update",);
+// router.post("/update",validateToken,updateBook);
 router.post("/delete",);
 
 
